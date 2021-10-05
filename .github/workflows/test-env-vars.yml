@@ -50,6 +50,9 @@ jobs:
         run: |
           echo "Running on prod environment"
 
+      - uses: actions/checkout@v1
+      - name: checkout
+    
       - shell: pwsh 
         run: |
           echo "${{ env.DEPLOYMENT_ENV }}"

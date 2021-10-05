@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, windows, X64]
+    runs-on: ubuntu-latest
     env:
       GIT_TERMINAL_PROMPT: 0
 # Ugly workarounds for env variables conditionals - see https://github.community/t/possible-to-use-conditional-in-the-env-section-of-a-job/135170
@@ -26,7 +26,7 @@ jobs:
           WEB_KUDU_USERNAME: ${{ secrets.WEB_TEST_KUDU_USERNAME }}
           WEB_KUDU_PASSWORD: ${{ secrets.WEB_TEST_KUDU_PASSWORD }}
           DEPLOYMENT_ENV: step_test
-        shell: powershell
+        shell: pwsh
         run: |
           echo "Running on test environment"
 
@@ -36,7 +36,7 @@ jobs:
           WEB_KUDU_USERNAME: ${{ secrets.WEB_STAGING_KUDU_USERNAME  }}
           WEB_KUDU_PASSWORD: ${{ secrets.WEB_STAGING_KUDU_PASSWORD }}
           DEPLOYMENT_ENV: step_staging
-        shell: powershell
+        shell: pwsh
         run: |
           echo "Running on staging environment"
 
@@ -46,10 +46,10 @@ jobs:
           WEB_KUDU_USERNAME: ${{ secrets.WEB_PROD_KUDU_USERNAME }}
           WEB_KUDU_PASSWORD: ${{ secrets.WEB_PROD_KUDU_PASSWORD }}
           DEPLOYMENT_ENV: step_prod
-        shell: powershell
+        shell: pwsh
         run: |
           echo "Running on prod environment"
 
-      - shell: powershell 
+      - shell: pwsh 
         run: |
           echo "${{ env.DEPLOYMENT_ENV }}"

@@ -1,0 +1,45 @@
+name: Test Env Vars
+
+on:
+  workflow_dispatch:
+    inputs:
+      server:
+        description: 'Server to deploy to (staging|test|prod)'
+        required: true
+        default: 'staging'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TEST_VALUE: initial
+      VAL_FROM_SECRET: initial
+
+    steps:
+      - shell: pwsh
+        run: |
+          echo "TEST_VALUE=$test" >> $GITHUB_ENV
+          echo "VAL_FROM_SECRET=${{ secret.SECRET_VALUE }}" >> $GITHUB_ENV
+          echo "Running on test (${{ github.event.inputs.server }}) environment"
+
+      - shell: pwsh 
+        run: |
+          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}'"
+
+      - shell: pwsh
+        run: |
+          echo 'TEST_VALUE=$test' >> $GITHUB_ENV
+          echo 'VAL_FROM_SECRET=${{ secret.SECRET_VALUE }}' >> $GITHUB_ENV
+
+      - shell: pwsh 
+        run: |
+          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}'"
+
+      - shell: pwsh
+        run: |
+          echo "TEST_VALUE='$test'" >> $GITHUB_ENV
+          echo "VAL_FROM_SECRET='${{ secret.SECRET_VALUE }}'" >> $GITHUB_ENV
+
+      - shell: pwsh 
+        run: |
+          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}'"

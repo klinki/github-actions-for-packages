@@ -19,7 +19,7 @@ jobs:
       - shell: pwsh
         run: |
           echo "TEST_VALUE=$test" >> $GITHUB_ENV
-          echo "VAL_FROM_SECRET=${{ secret.SECRET_VALUE }}" >> $GITHUB_ENV
+          echo "VAL_FROM_SECRET=${{ secrets.SECRET_VALUE }}" >> $GITHUB_ENV
           echo "Running on test (${{ github.event.inputs.server }}) environment"
 
       - shell: pwsh 
@@ -29,7 +29,7 @@ jobs:
       - shell: pwsh
         run: |
           echo 'TEST_VALUE=$test' >> $GITHUB_ENV
-          echo 'VAL_FROM_SECRET=${{ secret.SECRET_VALUE }}' >> $GITHUB_ENV
+          echo 'VAL_FROM_SECRET=${{ secrets.SECRET_VALUE }}' >> $GITHUB_ENV
 
       - shell: pwsh 
         run: |
@@ -38,7 +38,7 @@ jobs:
       - shell: pwsh
         run: |
           echo "TEST_VALUE='$test'" >> $GITHUB_ENV
-          echo "VAL_FROM_SECRET='${{ secret.SECRET_VALUE }}'" >> $GITHUB_ENV
+          echo "VAL_FROM_SECRET='${{ secrets.SECRET_VALUE }}'" >> $GITHUB_ENV
 
       - shell: pwsh 
         run: |

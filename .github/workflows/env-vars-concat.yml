@@ -1,0 +1,21 @@
+name: Env Vars Concat
+
+on:
+  workflow_dispatch:
+    inputs:
+      server:
+        description: 'Server to deploy to (staging|test|prod)'
+        required: true
+        default: 'staging'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TEST_VALUE: ${{ secrets['SECRET' + '_VALUE'] }}
+      VAL_FROM_SECRET: ${{ secrets[format('SECRET{0}', '_VALUE')] }}
+
+    steps:
+      - shell: pwsh 
+        run: |
+          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}'"

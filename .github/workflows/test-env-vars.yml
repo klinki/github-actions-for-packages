@@ -14,7 +14,7 @@ jobs:
     env:
       GIT_TERMINAL_PROMPT: 0
 # Ugly workarounds for env variables conditionals - see https://github.community/t/possible-to-use-conditional-in-the-env-section-of-a-job/135170
-      WEB_KUDU_PATH: ${{ github.event.inputs.server == 'staging' &&  || secrets.WEB_TEST_KUDU_PATH }}
+      WEB_KUDU_PATH: ${{ github.event.inputs.server == 'staging' &&  secrets.WEB_STAGING_KUDU_PATH || secrets.WEB_TEST_KUDU_PATH }}
       WEB_KUDU_USERNAME: ${{ github.event.inputs.server == 'staging' && secrets.WEB_STAGING_KUDU_USERNAME || secrets.WEB_TEST_KUDU_USERNAME }}
       WEB_KUDU_PASSWORD: ${{ github.event.inputs.server == 'staging' && secrets.WEB_STAGING_KUDU_PASSWORD || secrets.WEB_TEST_KUDU_PASSWORD }}
       DEPLOYMENT_ENV: job_staging

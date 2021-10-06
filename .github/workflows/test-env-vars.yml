@@ -39,8 +39,9 @@ jobs:
           DEPLOYMENT_ENV: step_staging
         shell: pwsh
         run: |
-          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV }}" >> $GITHUB_ENV
+          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV }}" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
           echo "Running on staging (${{ env.DEPLOYMENT_ENV }}) environment"
+#          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV }}" >> $GITHUB_ENV
 
       - if: ${{ github.event.inputs.server == 'prod' }}
         env:

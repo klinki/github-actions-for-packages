@@ -21,3 +21,4 @@ jobs:
         run: |
           echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}' and VAL_FROM_SECRET_MIDDLE='${{ env.VAL_FROM_SECRET_MIDDLE }}'"
           echo 'TEST_VALUE=\'${{ env.TEST_VALUE }}\' and VAL_FROM_SECRET=\'${{ env.VAL_FROM_SECRET }}\' and VAL_FROM_SECRET_MIDDLE=\'${{ env.VAL_FROM_SECRET_MIDDLE }}\''
+          echo '${{ env.TEST_VALUE }}'

@@ -14,8 +14,9 @@ jobs:
     env:
       TEST_VALUE: ${{ secrets[format('SECRET{0}', '_value')] }}
       VAL_FROM_SECRET: ${{ secrets[format('SECRET{0}', '_VALUE')] }}
+      VAL_FROM_SECRET_MIDDLE: ${{ secrets[format('WEB_{0}_KUDU_USERNAME', github.event.inputs.server] }}
 
     steps:
       - shell: pwsh 
         run: |
-          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}'"
+          echo "TEST_VALUE='${{ env.TEST_VALUE }}' and VAL_FROM_SECRET='${{ env.VAL_FROM_SECRET }}' and VAL_FROM_SECRET_MIDDLE='${{ env.VAL_FROM_SECRET_MIDDLE }}'"

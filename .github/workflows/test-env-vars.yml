@@ -28,6 +28,7 @@ jobs:
           DEPLOYMENT_ENV: step_test
         shell: pwsh
         run: |
+          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV}" >> $GITHUB_ENV
           echo "Running on test environment"
 
       - if: ${{ github.event.inputs.server == 'staging' }}
@@ -38,6 +39,7 @@ jobs:
           DEPLOYMENT_ENV: step_staging
         shell: pwsh
         run: |
+          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV}" >> $GITHUB_ENV
           echo "Running on staging environment"
 
       - if: ${{ github.event.inputs.server == 'prod' }}
@@ -48,6 +50,7 @@ jobs:
           DEPLOYMENT_ENV: step_prod
         shell: pwsh
         run: |
+          echo "DEPLOYMENT_ENV=${{ env.DEPLOYMENT_ENV}" >> $GITHUB_ENV
           echo "Running on prod environment"
 
       - uses: actions/checkout@v1
